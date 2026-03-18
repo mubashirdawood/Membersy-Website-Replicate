@@ -77,11 +77,15 @@ app.post("/send", (req, res) => {
 /**
  * STEP 4: START THE SERVER
  */
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-  console.log(`=========================================`);
-  console.log(`Server is running!`);
-  console.log(`Open your browser to: http://localhost:${PORT}`);
-  console.log(`=========================================`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`=========================================`);
+    console.log(`Server is running!`);
+    console.log(`Open your browser to: http://localhost:${PORT}`);
+    console.log(`=========================================`);
+  });
+}
+
+module.exports = app;
